@@ -13,11 +13,13 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
         crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"
+        integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
     <script src="js/scripts.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Índice de Acertos da Previsão</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -38,23 +40,100 @@
     </nav>
     <br>
     <div id="divBody">
-        <div class="form-group col-md-2">
-            <label for=" formGroupExampleInput">Localidade</label>
+        <div class="form-group col-md-4">
+            <label for=" formGroupExampleInput">Localidades</label>
             <input type="text" class="form-control" name="localidade" id="idLocalidade"
-                style="text-transform:uppercase;" placeholder="SBCF, por exemplo...">
+                style="text-transform:uppercase;" placeholder="SBCF, por exemplo..."
+                value="SBGR,SBCT,SBFI,SBFL,SBUG,SBSM,SBCO,SBPK">
         </div>
         <br>
-        <div class="form-group col-md-2">
+        <div class="form-group col-md-1">
             <label for="formGroupExampleInput2">Data</label>
             <input type="date" class="form-control" name="data" id="idData" placeholder="Another input">
         </div>
         <br>
-        <button class="btn btn-primary mb-2" onclick="submitF()">Buscar</button>
+        <div class="row">
+            <div class="col-md-2 col-sm-2">
+                <label for="formGroupExampleInput2">Início Turno MANHÃ</label>
+                <select class="form-select form-select-sm col-sm-6 col-md-6" aria-label=".form-select-lg example"
+                    id="selectManha">
+                    <option value="05">05Z</option>
+                    <option value="06">06Z</option>
+                    <option value="07">07Z</option>
+                    <option value="08" selected>08Z</option>
+                    <option value="09">09Z</option>
+                    <option value="10">10Z</option>
+                    <option value="11">11Z</option>
+                    <option value="12">12Z</option>
+                </select>
+            </div>
 
+            <div class="col-md-2 col-sm-2">
+                <label for="formGroupExampleInput2">Início Turno TARDE</label>
+                <select class="form-select form-select-sm col-sm-6" aria-label=".form-select-lg example"
+                    id="selectTarde">
+                    <option value="12">12Z</option>
+                    <option value="13">13Z</option>
+                    <option value="14">14Z</option>
+                    <option value="15" selected>15Z</option>
+                    <option value="16">16Z</option>
+                    <option value="17">17Z</option>
+                    <option value="18">18Z</option>
+                    <option value="19">19Z</option>
+                    <option value="20">20Z</option>
+                </select>
+            </div>
+
+            <div class="col-md-2 col-sm-2">
+                <label for="formGroupExampleInput2">Início Turno NOITE</label>
+                <select class="form-select form-select-sm col-sm-6" aria-label=".form-select-lg example"
+                    id="selectNoite">
+                    <option value="12">12Z</option>
+                    <option value="13">13Z</option>
+                    <option value="14">14Z</option>
+                    <option value="15">15Z</option>
+                    <option value="16">16Z</option>
+                    <option value="17">17Z</option>
+                    <option value="18">18Z</option>
+                    <option value="19">19Z</option>
+                    <option value="20">20Z</option>
+                    <option value="21" selected>21Z</option>
+                    <option value="22">22Z</option>
+                    <option value="23">23Z</option>
+                </select>
+
+            </div>
+
+            <div class="col-md-2 col-sm-2">
+                <label for="formGroupExampleInput2">Fim Turno NOITE</label>
+                <select class="form-select form-select-sm col-sm-6" aria-label=".form-select-lg example"
+                    id="selectNoiteFim">
+                    <option value="12">12Z</option>
+                    <option value="13">13Z</option>
+                    <option value="14">14Z</option>
+                    <option value="15">15Z</option>
+                    <option value="16">16Z</option>
+                    <option value="17">17Z</option>
+                    <option value="18">18Z</option>
+                    <option value="19">19Z</option>
+                    <option value="20">20Z</option>
+                    <option value="21">21Z</option>
+                    <option value="22">22Z</option>
+                    <option value="23" selected>23Z</option>
+                    <option value="24" >00Z (Dia +1)</option>
+                    <option value="25" >01Z (Dia +1)</option>
+                    <option value="26" >02Z (Dia +1)</option>
+                    <option value="27" >03Z (Dia +1)</option>
+                    <option value="28" >04Z (Dia +1)</option>
+                </select>
+
+            </div>
+        </div>
         <br>
+        <button class="btn btn-primary mb-4" onclick="submitF()">Atualizar</button>
         <br>
         <div class="side">
-            <h5>OBSERVADO</h5>
+            <h5>OBSERVADO NO METAR</h5>
             <table class="table tableTurnos side">
                 <thead>
                     <tr>
@@ -66,43 +145,84 @@
                 </thead>
                 <tbody id='tableRowsTurnos'>
                     <tr>
-                        <th scope="row">XXXX</th>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <th scope="row">XXXX</th>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                     <tr>
-                        <th scope="row">XXXX</th>
+                        <th scope="row"></th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
                     </tr>
                 </tbody>
             </table>
+        </div>
+
+        <div class="side">
+            <form>
+                <h5>PREVISTO (INSERIR MANUALMENTE)</h5>
+                <table class="table tableTurnosPrev side" id="tablePrev">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">MANHÃ</th>
+                            <th scope="col">TARDE</th>
+                            <th scope="col">NOITE</th>
+                        </tr>
+                    </thead>
+                    <tbody id='tableRowsTurnosPrev'>
+                        <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                        <tr>
+                            <th scope="row"></th>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            </tr>
+                    </tbody>
+                </table>
+                <datalist id="coresPrev">
+                    <option value="#1e90ff">AZUL</option>
+                    <option value="#00ff00">VERDE</option>
+                    <option value="#ffff00">AMARELO</option>
+                    <option value="#ffbf00">AMBAR</option>
+                    <option value="#ff0000">VERMELHO</option>
+                </datalist>
+            </form>
         </div>
         <div class="side">
-            <h5>PREVISTO</h5>
-            <table class="table tableTurnosPrev side">
-                <thead>
-                    <tr>
-                        <th scope="col"></th>
-                        <th scope="col">MANHÃ</th>
-                        <th scope="col">TARDE</th>
-                        <th scope="col">NOITE</th>
-                    </tr>
-                </thead>
-                <tbody id='tableRowsTurnosPrev'>
-                    <tr>
-                        <th scope="row">XXXX</th>
-                    </tr>
-                    <tr>
-                        <th scope="row">XXXX</th>
-                    </tr>
-                    <tr>
-                        <th scope="row">XXXX</th>
-                    </tr>
-                </tbody>
-            </table>
+            <form>
+                <h5>LEGENDA</h5>
+                <img src="images/legenda.png" alt="">
+
+            </form>
+
+
         </div>
+        <br>
+        <br>
 
-
+        <h4 id="labelIndice" class="col-md-4">Índice de Acertos da Previsão: --.--%</h4>
+        <br>
+        <br>
         <table class="table">
             <thead>
                 <tr>

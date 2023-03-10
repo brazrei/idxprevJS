@@ -2,42 +2,95 @@
     padding: 10px;
 }
 
-.verde{
-    background-color: lime !important;
+.verde {
+    background-color: #00ff00 !important;
     font-weight: bolder;
 }
 
-.vermelho{
-    background-color: red !important;
+.vermelho {
+    background-color: #ff0000 !important;
     font-weight: bolder;
 }
 
-.amarelo{
-    background-color: yellow !important;
+.amarelo {
+    background-color: #ffff00 !important;
     font-weight: bolder;
 }
 
-.ambar{
+.ambar {
     background-color: #ffbf00 !important;
 }
 
-.azul{
+.azul {
     background-color: #1e90ff !important;
     font-weight: bolder;
 }
 
-table{
+table {
     box-shadow: 2px 2px 6px #555;
     margin: 10px;
+    margin-left: 35px;
     width: 98% !important;
-
     font-weight: bolder;
-
 }
 
-.side{
+.side {
     display: inline-table;
+    margin-right: 40px;
 }
-.tableTurnos, .tableTurnosPrev, .side{
+
+.tableTurnos,
+.tableTurnosPrev,
+.side {
     width: 30% !important;
+}
+
+nav {
+    box-shadow:  2px 2px 6px #555;
+    margin: 2px;
+}
+
+.table tr,
+.table td {
+
+    text-align: center
+}
+
+td {
+    min-width: 125px !important;
+    height: 48px !important;
+}
+
+#divBody {
+    padding-top: 50px;
+}
+
+h5,
+h4 {
+    background-color: #00dbc6;
+    color: #000;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow:  2px 2px 6px #555;
+    text-shadow: 2px 2px 6px #555;
+}
+
+button{
+    box-shadow:  2px 2px 6px #555;
+    width: 200px;
+}
+
+img {
+    width: 80%;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+select, input {
+    box-shadow:  2px 2px 6px #555;
+
+}
+
+label {
+    font-size: larger;
 }
