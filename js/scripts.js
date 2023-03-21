@@ -428,9 +428,9 @@ function submitF() {
         return new Date(data.setDate(data.getDate() + 1))
     }
     //let metar = new Metar()
-    let datai = document.getElementById('idData').value
-    let dataf = getNextDay(new Date(datai.replaceAll('-','/')))
-    datai = datai.replaceAll('-', '')
+    let datai = document.getElementById('idData').value.replaceAll('-','/')
+    let dataf = getNextDay(new Date(datai))
+    datai = datai.replaceAll('/', '')
     dataf = getFormatedDate(dataf) + "05"
     getMetar(document.getElementById('idLocalidade').value, datai, dataf)
 }
